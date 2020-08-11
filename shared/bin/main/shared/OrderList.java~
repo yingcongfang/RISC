@@ -1,0 +1,80 @@
+package RISK;
+
+import java.io.Serializable;
+import java.util.*;
+
+public class OrdersList implements Serializable {
+  private String assignee;
+  private ArrayList<Order> orders_list = new ArrayList<>();
+  private Comparator com = new OrderCompare();
+
+  public OrdersList(String assignee) {
+    this.assignee = assignee;
+  }
+
+  public String getAssigneeName() {
+    return assignee;
+  }
+
+  public void setAssignee(String assignee) {
+    this.assignee = assignee;
+  }
+
+  public ArrayList<Order> getOrdersList() {
+    return orders_list;
+  }
+
+  public void setOrdersList(ArrayList<Order> orders_list) {
+    this.orders_list = orders_list;
+  }
+
+  public void addOrder(Order new_order) {
+    this.orders_list.add(new_order);
+  }
+
+  public void sortOrder() {
+    Collections.sort(orders_list, com);
+  }
+
+  public void clearOrderList() {
+    orders_list.clear();
+  }
+
+  public boolean getOneOrder() {
+    System.out.println(
+        "You are the " + assignee + " player, what would you like to do? (D for done)");
+    System.out.println("\t(M)ove");
+    System.out.println("\t(A)ttack");
+    System.out.println("\t(D)one");
+
+    char action_type;
+    while (true) {
+      String input = InputHelper.getInputStringFromConsole();
+      action_type = Character.toLowerCase(input.charAt(0));
+      if (input.length() != 1 || (action_type != 'm' && action_type != 'a' && action_type != 'd')) {
+        System.out.println("You input is not legal, please choose your order again.");
+      } else {
+        break;
+      }
+    }
+
+    switch (action_type) {
+      case 'm':
+        this.addOrder(new Order("Move"));
+        return true;
+      case 'a':
+        this.addOrder(new Order("Attack"));
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  public void updateAllOrdersOfOneRound() {
+    this.clearOrderList();
+    boolean end_order = true;
+    while (end_order) {
+      end_order = getOneOrder();
+    }
+  }
+}

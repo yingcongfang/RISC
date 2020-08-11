@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="185.4" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.PlayerInitializeController">
+
+    <children>
+
+              <Label fx:id="init_prompt" layoutX="70.0" layoutY="43.0" text="Please input your name" GridPane.rowIndex="1" />
+
+              <TextField fx:id="init_username" layoutX="70.0" layoutY="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="init_ok_button" layoutX="197.0" layoutY="123.0" onAction="#getPlayerName" text="Ok" />
+    </children>
+
+</AnchorPane>
